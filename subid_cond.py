@@ -2,10 +2,11 @@ import glob
 import pandas as pd
 import numpy as np
 
-path ='/Users/spencercastro/PycharmProjects/LBA_Data/Study1bChoice/Prepared_Data'
-allFiles = glob.glob(path + "/*.csv")
+path ='C:/Users/cac20/PycharmProjects/python_projects/lba_model2/'
+allFiles = glob.glob(path + "*.txt")
 
-### Lists we'll need later as well as pandas data frames
+print len(allFiles[0])
+# Lists we'll need later as well as pandas data frames
 # filenameframe = pd.DataFrame()
 frame = pd.DataFrame()
 list_ = []
@@ -22,15 +23,17 @@ list_ = []
 #
 # i = 1
 
+
+
 for filename in allFiles:
-    filename = filename[74:]
-    subid = str(filename[:3])
-    cond = str(filename[4:6])
+    filename = filename[58:]
+    subid = str(filename[13:16])
+    cond = str(filename[16])
 
 
     df = pd.read_csv(filename,index_col=None, header=0)
     mapping = {'correct': 1, 'Wrong!!': 0, 'miss': -1}
-    df = df.replace({'correct': mapping, 'Wrong!!': mapping, 'miss': mapping })
+    df = df.replace({'correct': mapping, 'wrong': mapping, 'miss': mapping })
 
     if filename[:3] == subid:
         if filename[4:6] == 'Co':
